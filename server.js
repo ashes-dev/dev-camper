@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const connectDb = require('./db')
+const errorHandler = require('./middlewares/error.middleware')
 // routers
 const bootcamps = require('./routes/bootcamp.routes')
 
@@ -15,6 +16,8 @@ app.use(express.json())
 
 // routes
 app.use('/api/bootcamps', bootcamps)
+
+app.use(errorHandler)
 
 const server = app.listen(PORT, console.log(`devcamper live | PORT: ${PORT}`))
 
